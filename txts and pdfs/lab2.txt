@@ -1,0 +1,66 @@
+Chan Yat Long Ariel
+SID: 21054482
+
+Book.java:
+
+package Lab2b;
+
+/*	Comp3111LEx\Lab2b\Book.java		*/
+public class Book {
+    private String chapters[];
+    private static final int DEFAULT_CHAPTERS = 10;
+
+    public Book() {
+        chapters = new String[DEFAULT_CHAPTERS];
+        for (int i = 0; i < chapters.length; i++)
+            chapters[i] = "n/a";
+    }
+    public Book(String argument[]) {
+        /* construct the object with an array of chapter names */
+        /* PLEASE ADD YOUR CODE HERE */
+        chapters = new String[argument.length];
+        System.arraycopy(argument, 0, chapters, 0, argument.length);
+    }
+    public String getChapter(int i) {
+        /* return the chapter by the given index */
+        /* PLEASE ADD YOUR CODE HERE */
+        return chapters[i];
+    }
+    public String[] getChapters() {
+        return chapters;
+    }
+}
+
+MobileComputer.java:
+
+package Lab2c;
+
+/*	Comp3111LEx\Lab2c\MobileComputer.java
+	Inherits from Computer, class library for Lab2 Exercise 3	*/
+
+public class MobileComputer extends Computer implements Chargeable {
+    private int battery;
+    public MobileComputer() {
+        secret = "MobileComputer secret";
+        battery = 5;
+    }
+    @Override
+    public void work() {
+        if (battery > 0) {
+            System.out.println("It is working on my lap.");
+            battery--;
+        } else
+            System.out.println("Running out of battery");
+    }
+    public void charge() {
+        if (battery < 10)
+            battery++;
+//        System.out.println(battery);
+    }
+}
+
+Fixed MobileComputer by added "implements Chargeable" (line 41 of this text file)
+Note on line 25 of mainApp2c.java, the function c.charge() takes in an argument that implements that interface "Chargeable".
+MobileComputer wasn't implemented with the "Chargeable" interface, hence its instance, m, can't be passed into the function.
+By adding "implements Chargeable" in the class declaration of "MobileCharger" (line 41 of this text file),
+the class is now considered an implementation of the "Chargeable" interface, hence can be used in line 25 of mainApp2c.java
